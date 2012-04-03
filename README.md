@@ -93,7 +93,7 @@ $gnip = $this->get('gnip.loader');
 $feed = $gnip->getFeed('facebook'));
 
 //parse feed
-$parser = new Parsers\Parser();
+$parser = $this->get('gnip.parser);
 
 //feed will be parsed with FacebookParser class
 $parser->parse($feed, 'facebook');
