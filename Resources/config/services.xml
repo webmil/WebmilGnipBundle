@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="gnip_base_configuration.class">Gnip\Configuration\BaseConfiguration</parameter>
+        <parameter key="gnip_rules_manager.class">Gnip\Rules\RulesManager</parameter>
+        <parameter key="gnip_loader.class">Gnip\Collectors\Loader</parameter>
+        <parameter key="gnip_parser.class">Gnip\Parsers\Parser</parameter>
+    </parameters>
+
+    <services>
+        <service id="gnip.base.configuration" class="%gnip_base_configuration.class%">
+            <argument>%webmil_gnip%</argument>
+        </service>
+
+        <service id="gnip.rules.manager" class="%gnip_rules_manager.class%">
+            <argument type="service" id="gnip.base.configuration" />
+        </service>
+
+        <service id="gnip.loader" class="%gnip_loader.class%">
+            <argument type="service" id="gnip.base.configuration" />
+        </service>
+
+        <service id="gnip.parser" class="%gnip_parser.class%"></service>
+    </services>
+</container>
